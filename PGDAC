@@ -1,0 +1,7 @@
+package  cdac.hyd;
+public class PGDAC{
+int strength=140;
+	void getTotal(){
+	Syste,out.println("PG DAC - Strength: "+strength);
+	}
+}

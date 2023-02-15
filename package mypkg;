@@ -1,0 +1,49 @@
+package mypkg;
+
+class A //parent class
+{
+    int num1=5;
+    public A()
+    {
+        System.out.println("\nNumber : "+num1);   
+    }
+}
+//child class extends parent
+class B extends A
+{
+    protected int num1=5,sq;
+    public B()
+    {
+        sq=num1*num1;
+        System.out.println("\nSquare : "+sq);
+    }
+}
+//super child class extend child class
+// class C extends B
+// {
+//     protected int cb;
+//     public C()
+//     {
+//         cb=sq*num1;
+//         System.out.println("\nCube : "+cb);
+//     }
+// }
+//main class
+
+public class As41Multilevel extends B
+{
+    public As41Multilevel()
+    {
+        int cb;
+        cb=sq*num1;
+        System.out.println("\nCube : "+cb);
+    }
+
+
+    public static void main(String[] args) 
+    {
+        //obj of super childc class have access of child class & parent class
+        //C c=new C();    
+        //As41Multilevel  a1 =new As41Multilevel();
+    }
+}

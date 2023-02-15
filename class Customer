@@ -1,0 +1,103 @@
+class Customer                                    //Super/Parent/Base class
+{
+    //Declaration of all Superclass Instance Variable as private.
+    private int Cust_ID;
+    private String Cust_Name;
+    private double Cust_Balance;
+    private String Cust_City;
+    static String Cust_Bank="State Bank of India";
+    //Parameterised Cuntsructor to initialize data members of Superclass Customer
+    public Customer(int Cust_ID, String Cust_Name, double Cust_Balance, String Cust_City)
+    {
+        this.Cust_ID=Cust_ID;
+        this.Cust_Name=Cust_Name;
+        this.Cust_Balance=Cust_Balance;
+        this.Cust_City=Cust_City;
+    }
+    public double getCust_Balance()    //to access the private data member using getter
+    {
+        return Cust_Balance;
+    }
+    //getter Method to Print Customer information
+    protected void getCustInfo()
+    {
+        System.out.println("[Customer Information From SuperClass]");
+        //System.out.println("\tID : "+Cust_ID+"\n\tName : "+Cust_Name+"\n\tBalance : "+Cust_Balance+"\n\tCity : "+Cust_City+"\n\tBank N
+from 220350320139_Yedave_Bharati_Vijay to everyone:    10:32 AM
+System.out.println("\tID               : "+Cust_ID);
+        System.out.println("\tName             : "+Cust_Name);
+        System.out.println("\tBank Balance     : "+Cust_Balance);
+        System.out.println("\tCity             : "+Cust_City);
+        System.out.println("\tBank Name        : "+Cust_Bank);
+    }
+    
+    //Method Defined to Calculate Simple Interest use formula: SI=(P*t*r)
+    public void calculate_SI()
+    {
+        int t=5;                                       //declaration+initialization tenure
+        double r=8.85;                                 //declaration+initialization of fixed rate of interest
+        double p=getCust_Balance();                        
+        double SI=(p*t*r)/100;                         // Calculate SI
+        System.out.println("\tSimple Interest  : "+SI);   // Print on console SI
+    }
+}
+class ClassicCustomer extends Customer                 //Sub/Child/derived  class
+{
+    int Withdraw_Limit;                                //child specific member
+   
+
+ //double Cust_Balance;
+    //Child class constructor to invoked super class constructor using super keyword
+    public ClassicCustomer(int Cust_ID, String Cust_Name, double Cust_Balance, String Cust_City, int Withdraw_Limit)
+    {
+        super(Cust_ID,Cust_Name,Cust_Balance,Cust_City);
+        this.Withdraw_Limit=Withdraw_Limit;
+    }
+    //Method overriden to Calculate Simple Interest use formula: SI=(P*t*r)
+    @Override       
+    public void calculate_SI()                         // re-defining - signature must be same
+    {
+        int t=5;                                       //declaration+initialization tenure
+        double r=9.5;                                  //declaration+initialization of fixed rate of interest
+        double p=getCust_Balance();                    //Cust_Balance will update through the getter method; 
+        double SI=(p*t*r)/100;                         // Calculate SI
+        System.out.println("\tSimple Interest  : "+SI);   // Print on console SI
+    }
+    //getter
+from 220350320139_Yedave_Bharati_Vijay to everyone:    10:33 AM
+ Method to Print Customer information
+    @Override 
+    protected void getCustInfo()
+    {
+        super.getCustInfo();                           //Access Parent Method
+        System.out.println("[Customer Information From SubClass]");
+        System.out.println("\tWithdraw Limit   : "+Withdraw_Limit);
+    }
+}
+
+public class Test
+{
+    public static void main(String[] args)
+    {
+        System.out.println("\nResult from C1 Object");
+        Customer C1=new ClassicCustomer(139,"Bharati",350000,"Shirpur",100000);//Upcasting
+        C1.getCustInfo();
+        C1.calculate_SI();
+System.out.println("\n==============================================================");
+        System.out.println("\nResult from C2 Object");
+        Customer C2=new Customer(140,"Minakshi",360000,"Pune");
+        C2.getCustInfo();
+        C2.calculate_SI();
+System.out.println("\n==============================================================");
+        System.out.println("\nResult from C3 Object");
+        ClassicCustomer C3=new ClassicCustomer(120,"Yedave",320000,"Dhule",200000);
+        C3.getCustInfo();
+        C3.calculate_SI();
+System.out.println("\n==============================================================");
+        System.out.println("\nResult from C3 shallow copy of in C2 Object");
+        C2=C3;                               //Upcasting----------------s
+from 220350320139_Yedave_Bharati_Vijay to everyone:    10:34 AM
+C2.getCustInfo();
+        C2.calculate_SI();
+    }
+}
